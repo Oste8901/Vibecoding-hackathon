@@ -1,12 +1,11 @@
-// src/contract.js
+import { ethers } from "ethers";
+import contractData from "./abis/VeryfychainNFT.json"; // Ensure this path matches your project structure
 
-import { ethers } from 'ethers';
-import VeryfychainNFT from './abis/VeryfychainNFT.json'; // make sure the path is correct
-
-// Hardcoded contract address (replace with your deployed address)
-export const CONTRACT_ADDRESS = '0xB13417C6fc0cD7dA43a0EFAA8D999D850862d48B';
+// Deployed contract address on Sepolia
+export const CONTRACT_ADDRESS =  0x20E5e3eBd09B576B9Cb57835037d5990Fa9d54E3; // Replace with your actual address
 
 // Function to get the contract instance
 export const getContract = (providerOrSigner) => {
-  return new ethers.Contract(CONTRACT_ADDRESS, VeryfychainNFT.abi, providerOrSigner);
+  return new ethers.Contract(CONTRACT_ADDRESS, contractData.abi, providerOrSigner);
 };
+

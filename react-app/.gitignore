@@ -1,24 +1,25 @@
 # Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+react-app/react-app/logs
+react-app/react-app/*.log
+react-app/react-app/npm-debug.log*
+react-app/yarn-debug.log*
+react-app/yarn-error.log*
+react-app/pnpm-debug.log*
+react-app/lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+react-app/node_modules
+react-app/dist
+react-app/dist-ssr
+react-app/*.local
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+react-app/.vscode/*
+react-app/!.vscode/extensions.json
+react-app/.idea
+react-app/.DS_Store
+react-app/*.suo
+react-app/*.ntvs*
+react-app/*.njsproj
+react-app/*.sln
+react-app/*.sw? 
+ 
