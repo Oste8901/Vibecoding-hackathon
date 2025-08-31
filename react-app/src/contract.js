@@ -13,7 +13,7 @@ export const getContract = (signer) => {
 
 // Get contract instance read-only (for reading owner, etc.)
 export const getReadOnlyContract = () => {
-  const provider = new ethers.JsonRpcProvider("Alchemy_SEPOLIA_RPC_UR");
+  const provider = new ethers.JsonRpcProvider("https://eth-sepolia.g.alchemy.com/v2/fVV6GmhwSSvOQi2AJl8r4IkJMTV_NN2T");
   return new ethers.Contract(CONTRACT_ADDRESS, contractData.abi, provider);
 };
 
