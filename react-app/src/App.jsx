@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import detectEthereumProvider from "@metamask/detect-provider";
-import { getContract, CONTRACT_ADDRESS } from "./contract";
+import { getContract, getReadOnlyContract } from "./contract";
 
 function App() {
   const [account, setAccount] = useState(null);
+  const [owner, setOwner] = useState("Loading...");
 
-  // Connect wallet button
+  // Connect wallet
   const connectWallet = async () => {
     const provider = await detectEthereumProvider();
     if (!provider) {
@@ -23,12 +24,12 @@ function App() {
     }
   };
 
-  // Disconnect wallet button (clears state)
+  // Disconnect wallet
   const disconnectWallet = () => {
     setAccount(null);
   };
 
-  // Issue credential button
+  // Issue credential
   const issueCredential = async () => {
     if (!account) {
       alert("Please connect wallet first");
@@ -36,8 +37,8 @@ function App() {
     }
 
     try {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
       const contract = getContract(signer);
 
       const tx = await contract.issueCredential(account, "ipfs://example-token-uri");
@@ -45,10 +46,26 @@ function App() {
 
       alert(`Credential issued! Transaction hash: ${tx.hash}`);
     } catch (err) {
-      console.error(err);
-      alert("Failed to issue credential");
+      console.error("Full error:", err);
+      alert("Failed to issue credential: " + (err.reason || err.message));
     }
   };
+
+  // Fetch contract owner
+  const fetchOwner = async () => {
+    try {
+      const contract = getReadOnlyContract();
+      const ownerAddress = await contract.owner();
+      setOwner(ownerAddress);
+    } catch (err) {
+      console.error(err);
+      setOwner("Error fetching owner");
+    }
+  };
+
+  useEffect(() => {
+    fetchOwner();
+  }, []);
 
   return (
     <div style={{ padding: "2rem" }}>
@@ -65,6 +82,8 @@ function App() {
 
       <hr />
 
+      <p>Contract Owner: {owner}</p>
+
       <button
         onClick={issueCredential}
         disabled={!account}
@@ -76,12 +95,7 @@ function App() {
   );
 }
 
-export default App;
-
-
-
-
-
+export default App; 
 
 
 

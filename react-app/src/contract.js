@@ -1,11 +1,22 @@
+
+
 import { ethers } from "ethers";
-import contractData from "./abis/VeryfychainNFT.json"; // Ensure this path matches your project structure
+import contractData from "./abis/VeryfychainNFT.json";
 
-// Deployed contract address on Sepolia
-export const CONTRACT_ADDRESS =  0x20E5e3eBd09B576B9Cb57835037d5990Fa9d54E3; // Replace with your actual address
-
-// Function to get the contract instance
-export const getContract = (providerOrSigner) => {
-  return new ethers.Contract(CONTRACT_ADDRESS, contractData.abi, providerOrSigner);
+// Replace with your deployed contract address
+export const CONTRACT_ADDRESS = "0xA55D3D557332d196D3C7E813b0f9D6ec355Fe230";
+ 
+// Get contract instance with signer (for write operations)
+export const getContract = (signer) => {
+  return new ethers.Contract(CONTRACT_ADDRESS, contractData.abi, signer);
 };
+
+// Get contract instance read-only (for reading owner, etc.)
+export const getReadOnlyContract = () => {
+  const provider = new ethers.JsonRpcProvider("Alchemy_SEPOLIA_RPC_UR");
+  return new ethers.Contract(CONTRACT_ADDRESS, contractData.abi, provider);
+};
+
+
+
 
