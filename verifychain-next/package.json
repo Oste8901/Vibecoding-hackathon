@@ -1,0 +1,24 @@
+{
+  "name": "verifychain-next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "ethers": "^6.0.0",
+    "next": "^15.5.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "detect-provider": "^1.2.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.0",
+    "postcss": "^8.4.0",
+    "autoprefixer": "^10.4.0",
+    "@tailwindcss/postcss": "^1.0.0"
+  }
+}
